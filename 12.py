@@ -2,6 +2,10 @@ from flask import Flask
 import requests
 from bs4 import BeautifulSoup
 
+import a12_1 
+import a12_2
+import a12_3
+
 app = Flask(__name__)
 
 """
