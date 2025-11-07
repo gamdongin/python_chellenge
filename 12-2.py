@@ -70,7 +70,7 @@ job_title_list = []
 job_link_list = []
 
 skill_name = input("skill : ")
-url_input = f" https://web3.career/{skill_name}-jobs"
+url_input = f"https://web3.career/{skill_name}-jobs"
 url_list.append(url_input)
 for url in url_list:
 
