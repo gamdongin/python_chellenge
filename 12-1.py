@@ -2,10 +2,10 @@ import bs4
 import requests as requ
 
 def get_data(list_item):
-    company_list = []
-    job_title_list = []
-    description_list = []
-    job_link_list = []
+    company_list_get_data = []
+    job_title_list_get_data = []
+    description_list_get_data = []
+    job_link_list_get_data = []
     for item in list_item:
         data = item.find("div",class_="bjs-jlid__wrapper")
         company_and_job_title = data.find("div",class_="bjs-jlid__meta")
@@ -20,11 +20,11 @@ def get_data(list_item):
         description_html = data.find("div",class_="bjs-jlid__description")
         description = description_html.get_text(strip=True) # 설명
         
-        company_list.append(company)
-        job_title_list.append(job_title)
-        description_list.append(description)
-        job_link_list.append(job_link)
-    return company_list, job_title_list, description_list, job_link_list
+        company_list_get_data.append(company)
+        job_title_list_get_data.append(job_title)
+        description_list_get_data.append(description)
+        job_link_list_get_data.append(job_link)
+    return company_list_get_data, job_title_list_get_data, description_list_get_data, job_link_list_get_data
 
 def serch_data(url):
     headers = {
@@ -77,9 +77,3 @@ print(company_list)
 #print(job_title_list)
 #print(description_list)
 #print(job_link_list)
-
-
-
-
-    
-    
