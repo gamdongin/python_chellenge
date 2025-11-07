@@ -10,8 +10,8 @@ def get_data(list_item):
     job_link_list_get_data = []
     count = 0
     for item in list_item:
-        count += 1
-        if count == 5: # 5번째는 부트캠프 광고라서 패스
+        #count += 1
+        if item.get("id") == "sponsor_2": # 5번째는 부트캠프 광고라서 패스
             company = "_ADvertisement_"
             job_title = "_ADvertisement_"
             job_link = "_ADvertisement_"
