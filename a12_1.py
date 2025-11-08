@@ -26,7 +26,7 @@ def get_data(list_item):
         job_link_list_get_data.append(job_link)
     return company_list_get_data, job_title_list_get_data, description_list_get_data, job_link_list_get_data
 
-def serch_data(url):
+def serch_data(url,url_list):
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                     "AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -47,33 +47,31 @@ def serch_data(url):
     list_item = soup.find_all("li",class_="bjs-jlid")
     
     company_list, job_title_list, description_list, job_link_list = get_data(list_item)
-    return company_list, job_title_list, description_list, job_link_list
+    return company_list, job_title_list, description_list, job_link_list, url_list
     
 
 # 회사 이름, 직무 제목, 설명 및 직무 링크
+def search_a12_1():
+    url_list = []
 
-url_list = []
+    company_list = []
+    job_title_list = []
+    description_list = []
+    job_link_list = []
 
-next_page = []
+    skill_name = input("skill : ")
+    url_input = f"https://berlinstartupjobs.com/skill-areas/{skill_name}/"
+    url_list.append(url_input)
+    for url in url_list:
 
-company_list = []
-job_title_list = []
-description_list = []
-job_link_list = []
+        company_list_cache, job_title_list_cache, description_list_cache, job_link_list_cache, url_list = serch_data(url,url_list)
+        
+        company_list.extend(company_list_cache)
+        job_title_list.extend(job_title_list_cache)
+        description_list.extend(description_list_cache)
+        job_link_list.extend(job_link_list_cache)
+    # print(company_list)
+    return company_list, job_title_list, description_list, job_link_list
 
-skill_name = input("skill : ")
-url_input = f"https://berlinstartupjobs.com/skill-areas/{skill_name}/"
-url_list.append(url_input)
-for url in url_list:
-
-    company_list_cache, job_title_list_cache, description_list_cache, job_link_list_cache = serch_data(url)
-    
-    company_list.append(company_list_cache)
-    job_title_list.append(job_title_list_cache)
-    description_list.append(description_list_cache)
-    job_link_list.append(job_link_list_cache)
-
-print(company_list)
-#print(job_title_list)
-#print(description_list)
-#print(job_link_list)
+if __name__ == "__main__":
+    search_a12_1()
