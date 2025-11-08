@@ -1,12 +1,13 @@
-from flask import Flask
+from flask import Flask, render_template, request
 import requests
 from bs4 import BeautifulSoup
 
-import a12_1 
-import a12_2
-import a12_3
+from a12_1 import search_a12_1
+from a12_2 import search_a12_2  
+from a12_3 import search_a12_3
 
 app = Flask(__name__)
+app.jinja_env.globals.update(zip=zip) # html에서 zip 쓸려면 필요함
 
 """
 Do this when scraping a website to avoid getting blocked.
@@ -22,9 +23,19 @@ response = requests.get(URL, headers=headers)
 
 
 @app.route("/")
-def hello_world():
-    return "Hello, World!"
+def DohU():
+    skill_name = request.args.get("skill_name_serch", None)
+    data = []
+    if skill_name:
+        berlinstartupjobs = search_a12_1(skill_name)
+        print(" berlinstartupjobs done ")
+        weworkremotely = search_a12_2(skill_name)
+        print(" weworkremotely done ")
+        web3 = search_a12_3(skill_name)
+        print(" web3 done ")
+        data = [berlinstartupjobs, weworkremotely, web3]
+    return render_template("DohU.html", data=data, skill_name=skill_name)
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

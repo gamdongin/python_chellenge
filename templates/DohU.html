@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>  
+        <h1>DoH U</h1>
+        <form action="/" method="get">
+            <input type="text" name="skill_name_serch" placeholder="Skill you want to search">
+            <input type="submit" value="Search">
+        </form>
+        {% if skill_name %}
+            <h2>Search Results for "{{ skill_name }}"</h2>
+            {% for site_data in data %}
+                <h3>Site {{ loop.index }}</h3>
+                <ul>
+                    {% for company, job_title, job_link in zip(site_data.company, site_data.job_title, site_data.job_link) %}
+                        <li>
+                            <strong>{{ company }}</strong>: 
+                            <a href="{{ job_link }}" target="_blank">{{ job_title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        {% endif %}
+    </body>
+</html>

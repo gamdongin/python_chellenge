@@ -51,7 +51,7 @@ def serch_data(url,url_list):
     
 
 # 회사 이름, 직무 제목, 설명 및 직무 링크
-def search_a12_1():
+def search_a12_1(skill_name_input):
     url_list = []
 
     company_list = []
@@ -59,7 +59,7 @@ def search_a12_1():
     description_list = []
     job_link_list = []
 
-    skill_name = input("skill : ")
+    skill_name = skill_name_input
     url_input = f"https://berlinstartupjobs.com/skill-areas/{skill_name}/"
     url_list.append(url_input)
     for url in url_list:
@@ -70,8 +70,14 @@ def search_a12_1():
         job_title_list.extend(job_title_list_cache)
         description_list.extend(description_list_cache)
         job_link_list.extend(job_link_list_cache)
-    # print(company_list)
-    return company_list, job_title_list, description_list, job_link_list
+    #print(company_list)
+    doc = {
+        "company": company_list,
+        "job_title": job_title_list,
+        "description": description_list,
+        "job_link": job_link_list
+    }
+    return doc
 
 if __name__ == "__main__":
     search_a12_1()

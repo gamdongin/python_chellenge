@@ -37,12 +37,11 @@ def serch_data(url,url_list,page):
     company_list, job_title_list, job_link_list = get_data(list_item)
     return company_list, job_title_list, job_link_list, url_list
     
-def search_a12_3():
+def search_a12_3(skill_name_input):
     url_list = []
 
     company_list = []
     job_title_list = []
-    #description_list = []
     job_link_list = []
 
     spw = sync_playwright().start()
@@ -54,7 +53,7 @@ def search_a12_3():
     }
     page = browser.new_page(user_agent=headers["User-Agent"])
 
-    skill_name = input("skill : ")
+    skill_name = skill_name_input
     url_input = f"https://weworkremotely.com/remote-jobs/search?utf8=%E2%9C%93&term={skill_name}"
     url_list.append(url_input)
     for url in url_list:
@@ -68,8 +67,13 @@ def search_a12_3():
 
     browser.close()
     spw.stop()
-    # print(company_list)
-    return company_list, job_title_list, description_list, job_link_list
+    #print(company_list)
+    doc = {
+        "company": company_list,
+        "job_title": job_title_list,
+        "job_link": job_link_list
+    }
+    return doc
 
 if __name__ == "__main__":
     search_a12_3()

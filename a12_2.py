@@ -54,14 +54,14 @@ def serch_data(url,url_list):
     company_list, job_title_list, job_link_list = get_data(list_item)
     return company_list, job_title_list, job_link_list, url_list
     
-def search_a12_2():
+def search_a12_2(skill_name_input):
     url_list = []
 
     company_list = []
     job_title_list = []
     job_link_list = []
 
-    skill_name = input("skill : ")
+    skill_name = skill_name_input
     url_input = f"https://web3.career/{skill_name}-jobs"
     url_list.append(url_input)
     for url in url_list:
@@ -71,8 +71,13 @@ def search_a12_2():
         company_list.extend(company_list_cache)
         job_title_list.extend(job_title_list_cache)
         job_link_list.extend(job_link_list_cache)
-    # print(company_list)
-    return company_list, job_title_list, description_list, job_link_list
+    #print(company_list)
+    doc = {
+        "company": company_list,
+        "job_title": job_title_list,
+        "job_link": job_link_list
+    }
+    return doc
 
 if __name__ == "__main__":
     search_a12_2()
