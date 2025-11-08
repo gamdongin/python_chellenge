@@ -45,7 +45,7 @@ def search_a12_3(skill_name_input):
     job_link_list = []
 
     spw = sync_playwright().start()
-    browser = spw.chromium.launch()
+    browser = spw.chromium.launch(headless=True)
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                     "AppleWebKit/537.36 (KHTML, like Gecko) "
