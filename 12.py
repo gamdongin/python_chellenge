@@ -33,7 +33,11 @@ def DohU():
         print(" weworkremotely done ")
         web3 = search_a12_3(skill_name)
         print(" web3 done ")
-        data = [berlinstartupjobs, weworkremotely, web3]
+        data = {
+            "berlinstartupjobs": berlinstartupjobs,
+            "weworkremotely": weworkremotely,
+            "web3": web3
+        }
     return render_template("DohU.html", data=data, skill_name=skill_name)
 
 
