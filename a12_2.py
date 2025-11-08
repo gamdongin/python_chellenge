@@ -75,7 +75,8 @@ def search_a12_2(skill_name_input):
     doc = {
         "company": company_list,
         "job_title": job_title_list,
-        "job_link": job_link_list
+        "job_link": job_link_list,
+        "description": [""]*len(company_list) 
     }
     return doc
 
