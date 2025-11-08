@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 from a12_1 import search_a12_1
 from a12_2 import search_a12_2  
-from a12_3 import search_a12_3
+from a12_3_gpt import search_a12_3
 
 app = Flask(__name__)
 app.jinja_env.globals.update(zip=zip) # html에서 zip 쓸려면 필요함
