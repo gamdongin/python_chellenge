@@ -31,12 +31,27 @@ def DohU():
         data = data_base[skill_name]
         print(" data_base done ")
     elif skill_name:
-        berlinstartupjobs = search_a12_1(skill_name)
-        print(" berlinstartupjobs done ")
-        weworkremotely = search_a12_2(skill_name)
-        print(" weworkremotely done ")
-        web3 = search_a12_3(skill_name)
-        print(" web3 done ")
+        try:
+            berlinstartupjobs = search_a12_1(skill_name)
+            print("berlinstartupjobs done")
+        except Exception as e:
+            print(f"Error in berlinstartupjobs: {e}")
+            berlinstartupjobs = {"company": [], "job_title": [], "job_link": [], "description": []}
+
+        try:
+            weworkremotely = search_a12_2(skill_name)
+            print("weworkremotely done")
+        except Exception as e:
+            print(f"Error in weworkremotely: {e}")
+            weworkremotely = {"company": [], "job_title": [], "job_link": [], "description": []}
+
+        try:
+            web3 = search_a12_3(skill_name)
+            print("web3 done")
+        except Exception as e:
+            print(f"Error in web3: {e}")
+            web3 = {"company": [], "job_title": [], "job_link": [], "description": []}
+
         data = {
             "berlinstartupjobs": berlinstartupjobs,
             "weworkremotely": weworkremotely,
